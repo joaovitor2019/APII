@@ -40,12 +40,10 @@ public class AlgoritmosPI {
         
          //inseri resultados no array 'resultados'
          System.out.println("Soma de cada Linha da Matriz");
-        for (int i = 0; i < matriz.length; i++) {
+        for (double[] matriz1 : matriz) {
             for (int j = 0; j < matriz[0].length; j++) {
-                soma = soma + matriz[i][j];
-
+                soma = soma + matriz1[j];
             }
-
             resultados[verifica] = soma;
             System.out.printf("[%.2f]", resultados[verifica]);
             soma = 0;
