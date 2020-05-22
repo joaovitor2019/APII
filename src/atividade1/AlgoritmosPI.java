@@ -16,75 +16,126 @@ public class AlgoritmosPI {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        /*double matriz[][] = {{0.1, 0.2, 0.1, 0.2, 0.1},
+      double matriz[][] = {{0.1, 0.2, 0.1, 0.2, 0.1},
                              {0.1, 0.2, 0.3, 0.1, 0.1},
                              {0.2, 0.3, 0.1, 0.1, 0.3},
                              {0.4, 0.1, 0.1, 0.1, 0.2},
-                             {0.2, 0.2, 0.3, 0.3, 0.1}};*/
-        double matriz[][] =        {{0.1, 0.1, 0.1, 0.1, 0.1, 0.1 , 0.1, 0.1 , 0.1 , 0.1},
+                             {0.2, 0.2, 0.3, 0.3, 0.1}};
+        /*double matriz[][] =        {{0.1, 0.1, 0.1, 0.1, 0.1, 0.1 , 0.1, 0.1 , 0.1 , 0.1},
                                     {0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2},
                                     {0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3},
                                     {0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4},
-                                    {0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5}};
+                                    {0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5}};*/
 
         
-        double resultados[] = new double[matriz.length];
-        double diferenca[] = new double[matriz.length];
+        double resultadosLinhas [] = new double[matriz.length];
+        double resultadosColunas [] = new double[matriz[0].length];
+        double diferencaLinha [] = new double[resultadosLinhas.length];
+        double diferencaColunas [] = new double [resultadosColunas.length];
         int verifica = 0;
         double soma = 0;
-        double esquerdaSoma = 0;
-        double direitaSoma = 0;
+        double acimaSoma = 0;
+        double abaixoSoma = 0;
         double centroLinha = Integer.MAX_VALUE ;
+        double centroColuna = Integer.MAX_VALUE ;
         int centroGravidadeLinha = 0;
+        int centroGravidadeColuna = 0;
         
-        
-         //inseri resultados no array 'resultados'
+         //inseri resultados no array 'resultadosLinhas'
          System.out.println("Soma de cada Linha da Matriz");
         for (double[] matriz1 : matriz) {
             for (int j = 0; j < matriz[0].length; j++) {
                 soma = soma + matriz1[j];
             }
-            resultados[verifica] = soma;
-            System.out.printf("[%.2f]", resultados[verifica]);
+            resultadosLinhas[verifica] = soma;
+            System.out.printf("[%.2f]", resultadosLinhas[verifica]);
             soma = 0;
             verifica++;
         }
+        soma = 0;
+        verifica = 0;
         System.out.println();
         
 
         System.out.println("Dentro das [] é a soma de cada linha , o valor após o '=' é a linha verificada \n"
                             + "a direita estão resultados das linhas acima da matriz e a esquerda resultados das linhas abaixo da matriz");
-        for (int i = 0; i < resultados.length; i++) {// Linha verificada
-            for (int j = i + 1; j < resultados.length; j++) {//soma das linhas abaixo da linha verificada 
-                direitaSoma = direitaSoma + resultados[j];
+        for (int i = 0; i < resultadosLinhas.length; i++) {// Linha verificada
+            for (int j = i + 1; j < resultadosLinhas.length; j++) {//soma das linhas abaixo da linha verificada 
+                abaixoSoma = abaixoSoma + resultadosLinhas[j];
             }
-            System.out.printf("[%.2f] = %f ", direitaSoma, resultados[i]);
+            System.out.printf("[%.2f] = %f ", abaixoSoma, resultadosLinhas[i]);
 
             for (int k = i - 1; k >= 0; k--) {//soma das linhas acima da linha verificada
-                esquerdaSoma = esquerdaSoma + resultados[k];
+                acimaSoma = acimaSoma + resultadosLinhas[k];
             }
-            System.out.printf("[%.2f] = %f ", esquerdaSoma, resultados[i]);
+            System.out.printf("[%.2f] = %f ", acimaSoma, resultadosLinhas[i]);
             System.out.println("");
             
-            if (direitaSoma > esquerdaSoma) {//verifica qual valor é maior para ser subtraido
-                diferenca[i] = direitaSoma - esquerdaSoma;// armazena os valores diferença de cada respectiva linha
+            if (abaixoSoma > acimaSoma) {//verifica qual valor é maior para ser subtraido
+                diferencaLinha[i] = abaixoSoma - acimaSoma;// armazena os valores diferença de cada respectiva linha
 
             } else {
-                diferenca[i] = esquerdaSoma - direitaSoma;
+                diferencaLinha[i] = acimaSoma - abaixoSoma;
             }
-            esquerdaSoma = 0;//zera a soma superior para verificar a proxima linha
-            direitaSoma = 0;//zera a soma inferior para verificar a proxima linha
+            acimaSoma = 0;//zera a soma superior para verificar a proxima linha
+            abaixoSoma = 0;//zera a soma inferior para verificar a proxima linha
         }
-        for (int i = 0; i < diferenca.length; i++) {
+        for (int i = 0; i < diferencaLinha.length; i++) {
             
-            if(diferenca[i] < centroLinha){
-                centroLinha = diferenca[i];
+            if(diferencaLinha[i] < centroLinha){
+                centroLinha = diferencaLinha[i];
                 centroGravidadeLinha = i+1;
                 
             } 
             
         }
-        System.out.println( "A linha do centro de gravidade  é "+centroGravidadeLinha);
+        
+       abaixoSoma = 0;
+       acimaSoma = 0;
+    //inseri resultados no array 'resultadosColunas'
+         System.out.println("Soma de cada Coluna da Matriz");
+        for (int i = 0; i< matriz[0].length;i++) {
+            for (int j = 0; j < matriz.length; j++) {
+                soma = soma + matriz[j][i];
+            }
+            resultadosColunas[verifica] = soma;
+            System.out.printf("[%.2f]", resultadosColunas[verifica]);
+            soma = 0;
+            verifica++;
+        }
+        
+       for (int i = 0; i < resultadosColunas.length; i++) {// Linha verificada
+            for (int j = i + 1; j < resultadosColunas.length; j++) {//soma das linhas abaixo da linha verificada 
+                abaixoSoma = abaixoSoma + resultadosColunas[j];
+            }
+            System.out.printf("[%.2f] = %f ", abaixoSoma, resultadosColunas[i]);
+
+            for (int k = i - 1; k >= 0; k--) {//soma das linhas acima da linha verificada
+                acimaSoma = acimaSoma + resultadosColunas[k];
+            }
+            System.out.printf("[%.2f] = %f ", acimaSoma, resultadosColunas[i]);
+            System.out.println("");
+            
+            if (abaixoSoma > acimaSoma) {//verifica qual valor é maior para ser subtraido
+                diferencaColunas[i] = abaixoSoma - acimaSoma;// armazena os valores diferença de cada respectiva linha
+
+            } else {
+                diferencaColunas[i] = acimaSoma - abaixoSoma;
+            }
+            acimaSoma = 0;//zera a soma superior para verificar a proxima linha
+            abaixoSoma = 0;//zera a soma inferior para verificar a proxima linha
+        }
+        for (int i = 0; i < diferencaColunas.length; i++) {
+            
+            if(diferencaColunas[i] < centroColuna){
+                centroColuna = diferencaColunas[i];
+                centroGravidadeColuna = i+1;
+                
+            }
+        }
+        
+        System.out.println( "O centro de gravidade  é {"+centroGravidadeLinha+" , "+centroGravidadeColuna+"}");
+        
     }
 
 }
