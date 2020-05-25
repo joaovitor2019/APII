@@ -21,15 +21,15 @@ public class AlgoritmosPI {
     public static void main(String[] args) {
     	
     	String arquivo = "arquivo.txt";
-		double vetor[][] = criaVetor(arquivo); //passa como argumento o nome do arquivo que deseja ler a primeira linha para criar o vetor
+		double matriz[][] = criaVetor(arquivo); //passa como argumento o nome do arquivo que deseja ler a primeira linha para criar o vetor
 		
-		vetor = populaVetor(vetor,arquivo); // passa o vetor(ele ainda não tem nenhuma informação em seus elementos) e o arquivo novamento para ler o restante das linhas
+		matriz = populaVetor(matriz,arquivo); // passa o vetor(ele ainda não tem nenhuma informação em seus elementos) e o arquivo novamento para ler o restante das linhas
 		
-		for (int i = 0; i < vetor.length; i++) 
+		for (int i = 0; i < matriz.length; i++) 
 		{
-			for (int j = 0; j < vetor[i].length; j++) 
+			for (int j = 0; j < matriz[i].length; j++) 
 			{
-				System.out.print(vetor[i][j]+ " ");
+				System.out.print(matriz[i][j]+ " ");
 			}
 			System.out.println();
 		}
@@ -43,12 +43,12 @@ public class AlgoritmosPI {
                              {0.2, 0.3, 0.1, 0.1, 0.3},
                              {0.4, 0.1, 0.1, 0.1, 0.2},
                              {0.2, 0.2, 0.3, 0.3, 0.1}};*/
-        double matriz[][] =      {{0.1, 0.1, 0.1, 0.1, 0.1, 0.1 , 0.1, 0.1 , 0.1 , 0.1},
+      /*  double matriz[][] =      {{0.1, 0.1, 0.1, 0.1, 0.1, 0.1 , 0.1, 0.1 , 0.1 , 0.1},
                                     {0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2},
                                     {0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3},
                                     {0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4},
                                     {0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5}};
-
+*/
         
         double resultadosLinhas [] = new double[matriz.length];
         double resultadosColunas [] = new double[matriz[0].length];
