@@ -5,9 +5,13 @@
  */
 package atividade1;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 /**
  *
- * @author vitor
+ * @author João Vitor Alves, Caio Moreno, Gustavo Pitombeira 
  */
 public class AlgoritmosPI {
 
@@ -16,16 +20,16 @@ public class AlgoritmosPI {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-      double matriz[][] = {{0.1, 0.2, 0.1, 0.2, 0.1},
+      /* double matriz[][] = {{0.1, 0.2, 0.1, 0.2, 0.1},
                              {0.1, 0.2, 0.3, 0.1, 0.1},
                              {0.2, 0.3, 0.1, 0.1, 0.3},
                              {0.4, 0.1, 0.1, 0.1, 0.2},
-                             {0.2, 0.2, 0.3, 0.3, 0.1}};
-        /*double matriz[][] =        {{0.1, 0.1, 0.1, 0.1, 0.1, 0.1 , 0.1, 0.1 , 0.1 , 0.1},
+                             {0.2, 0.2, 0.3, 0.3, 0.1}};*/
+        double matriz[][] =      {{0.1, 0.1, 0.1, 0.1, 0.1, 0.1 , 0.1, 0.1 , 0.1 , 0.1},
                                     {0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2},
                                     {0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3},
                                     {0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4},
-                                    {0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5}};*/
+                                    {0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5}};
 
         
         double resultadosLinhas [] = new double[matriz.length];
@@ -137,5 +141,75 @@ public class AlgoritmosPI {
         System.out.println( "O centro de gravidade  é {"+centroGravidadeLinha+" , "+centroGravidadeColuna+"}");
         
     }
+    
+    
+    
+    
+    // FUNÇÕES
+    
+
+public static double[][] criaVetor(String arquivo)
+{
+	double vetor[][] = null;
+	
+	try (BufferedReader br = new BufferedReader(new FileReader(arquivo)))
+	{
+		
+		String linha1 = br.readLine(); // Passo os dados da primeira linha para minha variável
+		String [] dimensoes = linha1.split(" ");//Separo os valores no meu vetor
+		
+		
+		vetor = new double[Integer.parseInt(dimensoes[0])][Integer.parseInt(dimensoes[1])]; 
+		
+		
+		
+	} catch (IOException e) 
+	{
+		System.out.println("ERRO ----> "+ e.getMessage());
+	}
+	
+	return vetor;
+}
+
+public static double[][] populaVetor(double vetor[][],String arquivo)
+{
+	
+	
+	try (BufferedReader br = new BufferedReader(new FileReader(arquivo))) // Instancio as classes de leitura do arquivo, usei a funcao do java Try-Resources pois desta forma ele garante que os recursos serão fechados depois do try e assim não preciso usar o Finally
+	{
+		
+		String linhas = br.readLine(); // tiro a primeira linha antes de entrar no while pois ela já foi lida para criar o vetor.
+		int i =0; // para fazer o necessário eu preciso apenas percorrer o j, entao crio essa variavel e incremento no final do while após percorrer todo o J.
+		
+		while(true) 
+		{
+			linhas = br.readLine();
+			
+			if(linhas == null) 
+			{
+			//Verifico se nao vem mais informaçoes e caso nao venha, eu paro o laço
+			break;
+			}
+			
+			String [] vetorTemp = linhas.split(" "); //Separo os valores no meu vetor
+			
+			for (int j = 0; j < vetorTemp.length; j++) 
+			{
+				
+				vetor[i][j] = Double.parseDouble((vetorTemp[i])); // enquanto percorre o j eu incremento os valores
+			}
+			
+				i++; // Incremeto o I após percorrer todo o J.
+			 
+		}			
+		
+	} catch (IOException e) 
+	{
+		System.out.println("ERRO ----> "+ e.getMessage()); // Caso dê alguma excessão eu printo na tela
+	}
+	
+	return vetor;
+}
+
 
 }
