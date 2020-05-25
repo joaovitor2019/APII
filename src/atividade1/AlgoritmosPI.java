@@ -19,6 +19,24 @@ public class AlgoritmosPI {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+    	
+    	String arquivo = "arquivo.txt";
+		double vetor[][] = criaVetor(arquivo); //passa como argumento o nome do arquivo que deseja ler a primeira linha para criar o vetor
+		
+		vetor = populaVetor(vetor,arquivo); // passa o vetor(ele ainda não tem nenhuma informação em seus elementos) e o arquivo novamento para ler o restante das linhas
+		
+		for (int i = 0; i < vetor.length; i++) 
+		{
+			for (int j = 0; j < vetor[i].length; j++) 
+			{
+				System.out.print(vetor[i][j]+ " ");
+			}
+			System.out.println();
+		}
+		 	
+		
+	
+    	
         // TODO code application logic here
       /* double matriz[][] = {{0.1, 0.2, 0.1, 0.2, 0.1},
                              {0.1, 0.2, 0.3, 0.1, 0.1},
