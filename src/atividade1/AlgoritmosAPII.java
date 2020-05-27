@@ -19,9 +19,7 @@ public class AlgoritmosAPII {
 	 * @param args the command line arguments
 	 */
 	public static void main(String[] args) {
- 
-		
-		
+
 		String arquivo = "arquivo.txt";
 		double matriz[][] = criaMatriz(arquivo); // passa como argumento o nome do arquivo que deseja ler a primeira
 													// linha para criar o vetor
@@ -75,13 +73,12 @@ public class AlgoritmosAPII {
 
 	public static double[][] populaMatriz(double matriz[][], String arquivo) {
 
-		try (BufferedReader br = new BufferedReader(new FileReader(arquivo))){ // Instancio as classes de leitura do
+		try (BufferedReader br = new BufferedReader(new FileReader(arquivo))) { // Instancio as classes de leitura do
 																				// arquivo, usei a funcao do java
 																				// Try-Resources pois desta forma ele
 																				// garante que os recursos serão
 																				// fechados depois do try e assim não
 																				// preciso usar o Finally
-		
 
 			String linhas = br.readLine(); // tiro a primeira linha antes de entrar no while pois ela já¡ foi lida para
 											// criar o vetor.
