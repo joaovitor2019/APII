@@ -19,7 +19,9 @@ public class AlgoritmosAPII {
 	 * @param args the command line arguments
 	 */
 	public static void main(String[] args) {
-
+ 
+		
+		
 		String arquivo = "arquivo.txt";
 		double matriz[][] = criaMatriz(arquivo); // passa como argumento o nome do arquivo que deseja ler a primeira
 													// linha para criar o vetor
