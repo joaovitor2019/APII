@@ -21,10 +21,10 @@ public class AlgoritmosPI {
 	public static void main(String[] args) {
 
 		String arquivo = "arquivo.txt";
-		double matriz[][] = criaVetor(arquivo); // passa como argumento o nome do arquivo que deseja ler a primeira
+		double matriz[][] = criaMatriz(arquivo); // passa como argumento o nome do arquivo que deseja ler a primeira
 												// linha para criar o vetor
 
-		matriz = populaVetor(matriz, arquivo); // passa o vetor(ele ainda não tem nenhuma informação em seus
+		matriz = populaMatriz(matriz, arquivo); // passa o vetor(ele ainda não tem nenhuma informação em seus
 												// elementos) e o arquivo novamento para ler o restante das linhas
 
 		for (int i = 0; i < matriz.length; i++) {
@@ -33,164 +33,59 @@ public class AlgoritmosPI {
 			}
 			System.out.println();
 		}
-
-		// TODO code application logic here
-		/*
-		 * double matriz[][] = {{0.1, 0.2, 0.1, 0.2, 0.1}, {0.1, 0.2, 0.3, 0.1, 0.1},
-		 * {0.2, 0.3, 0.1, 0.1, 0.3}, {0.4, 0.1, 0.1, 0.1, 0.2}, {0.2, 0.2, 0.3, 0.3,
-		 * 0.1}};
-		 */
-		/*
-		 * double matriz[][] = {{0.1, 0.1, 0.1, 0.1, 0.1, 0.1 , 0.1, 0.1 , 0.1 , 0.1},
-		 * {0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2}, {0.3, 0.3, 0.3, 0.3, 0.3,
-		 * 0.3, 0.3, 0.3, 0.3, 0.3}, {0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4},
-		 * {0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5}};
-		 */
-
-		double resultadosLinhas[] = new double[matriz.length];
-		double resultadosColunas[] = new double[matriz[0].length];
-		double diferencaLinha[] = new double[resultadosLinhas.length];
-		double diferencaColunas[] = new double[resultadosColunas.length];
-		int verifica = 0;
-		double soma = 0;
-		double acimaSoma = 0;
-		double abaixoSoma = 0;
-		double centroLinha = Integer.MAX_VALUE;
-		double centroColuna = Integer.MAX_VALUE;
-		int centroGravidadeLinha = 0;
-		int centroGravidadeColuna = 0;
-
-		// inseri resultados no array 'resultadosLinhas'
-		System.out.println("Soma de cada Linha da Matriz");
-		for (double[] matriz1 : matriz) {
-			for (int j = 0; j < matriz[0].length; j++) {
-				soma = soma + matriz1[j];
-			}
-			resultadosLinhas[verifica] = soma;
-			System.out.printf("[%.2f]", resultadosLinhas[verifica]);
-			soma = 0;
-			verifica++;
-		}
-		soma = 0;
-		verifica = 0;
-		System.out.println();
-
-		System.out.println("Dentro das [] é a soma de cada linha , o valor após o '=' é a linha verificada \n"
-				+ "a direita estão resultados das linhas acima da matriz e a esquerda resultados das linhas abaixo da matriz");
-		for (int i = 0; i < resultadosLinhas.length; i++) {// Linha verificada
-			for (int j = i + 1; j < resultadosLinhas.length; j++) {// soma das linhas abaixo da linha verificada
-				abaixoSoma = abaixoSoma + resultadosLinhas[j];
-			}
-			System.out.printf("[%.2f] = %f ", abaixoSoma, resultadosLinhas[i]);
-
-			for (int k = i - 1; k >= 0; k--) {// soma das linhas acima da linha verificada
-				acimaSoma = acimaSoma + resultadosLinhas[k];
-			}
-			System.out.printf("[%.2f] = %f ", acimaSoma, resultadosLinhas[i]);
-			System.out.println("");
-
-			if (abaixoSoma > acimaSoma) {// verifica qual valor é o maior para ser subtraido
-				diferencaLinha[i] = abaixoSoma - acimaSoma;// armazena os valores diferença de cada respectiva linha
-
-			} else {
-				diferencaLinha[i] = acimaSoma - abaixoSoma;
-			}
-			acimaSoma = 0;// zera a soma superior para verificar a proxima linha
-			abaixoSoma = 0;// zera a soma inferior para verificar a proxima linha
-		}
-		for (int i = 0; i < diferencaLinha.length; i++) {
-
-			if (diferencaLinha[i] < centroLinha) {
-				centroLinha = diferencaLinha[i];
-				centroGravidadeLinha = i + 1;
-
-			}
-
-		}
-
-		abaixoSoma = 0;
-		acimaSoma = 0;
 		
-		// inseri resultados no array 'resultadosColunas'
-		System.out.println("Soma de cada Coluna da Matriz");
-		for (int i = 0; i < matriz[0].length; i++) {
-			for (int j = 0; j < matriz.length; j++) {
-				soma = soma + matriz[j][i];
-			}
-			resultadosColunas[verifica] = soma;
-			System.out.printf("[%.2f]", resultadosColunas[verifica]);
-			soma = 0;
-			verifica++;
-		}
-		System.out.println("");
 
-		for (int i = 0; i < resultadosColunas.length; i++) {// Linha verificada
-			for (int j = i + 1; j < resultadosColunas.length; j++) {// soma das linhas abaixo da linha verificada
-				abaixoSoma = abaixoSoma + resultadosColunas[j];
-			}
-			System.out.printf("[%.2f] = %f ", abaixoSoma, resultadosColunas[i]);
+		double somaLinhas[] = new double[matriz.length];
+		double somaColunas[] = new double[matriz[0].length];
+		double resultadoSubtracaoLinhas[] = new double[somaLinhas.length];
+		double resultadoSubtracaoColunas[] = new double[somaColunas.length];
+		
+		
+		
 
-			for (int k = i - 1; k >= 0; k--) {// soma das linhas acima da linha verificada
-				acimaSoma = acimaSoma + resultadosColunas[k];
-			}
-			System.out.printf("[%.2f] = %f ", acimaSoma, resultadosColunas[i]);
-			System.out.println("");
+		armazenaSomaLinha(matriz, somaLinhas);// inseri soma no array 'somaLinhas'
+		armazenaResultadosSubtracao(somaLinhas, resultadoSubtracaoLinhas);//armazenando a subtração das somas acima e abaixo da coluna verificada 
+		
+		armazenaSomaColuna(matriz, somaColunas);// inseri soma no array 'somaColunas'
+		armazenaResultadosSubtracao(somaColunas, resultadoSubtracaoColunas);//armazenando a subtração das somas acima e abaixo da coluna verificada 
 
-			if (abaixoSoma > acimaSoma) {// verifica qual valor é o maior para ser subtraido
-				diferencaColunas[i] = abaixoSoma - acimaSoma;// armazena os valores diferença de cada respectiva linha
-
-			} else {
-				diferencaColunas[i] = acimaSoma - abaixoSoma;
-			}
-			acimaSoma = 0;// zera a soma superior para verificar a proxima linha
-			abaixoSoma = 0;// zera a soma inferior para verificar a proxima linha
-		}
-		for (int i = 0; i < diferencaColunas.length; i++) {
-
-			if (diferencaColunas[i] < centroColuna) {
-				centroColuna = diferencaColunas[i];
-				centroGravidadeColuna = i + 1;
-
-			}
-		}
-
-		System.out.println("O centro de gravidade da Matriz é {" + centroGravidadeLinha + " , " + centroGravidadeColuna + "}");
+		String resposta = CentroDeGravidade(resultadoSubtracaoLinhas, resultadoSubtracaoColunas);
+		System.out.println(resposta);
 
 	}
-
 	// FUNÇÕES
 
-	public static double[][] criaVetor(String arquivo) {
-		double vetor[][] = null;
+	public static double[][] criaMatriz(String arquivo) {
+		double matriz[][] = null;
 
 		try (BufferedReader br = new BufferedReader(new FileReader(arquivo))) {
 
 			String linha1 = br.readLine(); // Passo os dados da primeira linha para minha variável
 			String[] dimensoes = linha1.split(" ");// Separo os valores no meu vetor
 
-			vetor = new double[Integer.parseInt(dimensoes[0])][Integer.parseInt(dimensoes[1])];
+			matriz = new double[Integer.parseInt(dimensoes[0])][Integer.parseInt(dimensoes[1])];
 
 		} catch (IOException e) {
 			System.out.println("ERRO ----> " + e.getMessage());
 		}
 
-		return vetor;
+		return matriz;
 	}
 
-	public static double[][] populaVetor(double vetor[][], String arquivo) {
+	public static double[][] populaMatriz(double matriz[][], String arquivo) {
 
 		try (BufferedReader br = new BufferedReader(new FileReader(arquivo))) // Instancio as classes de leitura do
 																				// arquivo, usei a funcao do java
 																				// Try-Resources pois desta forma ele
 																				// garante que os recursos serão
-																				// fechados depois do try e assim nÃ£o
+																				// fechados depois do try e assim não
 																				// preciso usar o Finally
 		{
 
 			String linhas = br.readLine(); // tiro a primeira linha antes de entrar no while pois ela já¡ foi lida para
 											// criar o vetor.
 			int i = 0; // para fazer o necessário eu preciso apenas percorrer o j, entao crio essa
-						// variavel e incremento no final do while apÃ³s percorrer todo o J.
+						// variavel e incremento no final do while após percorrer todo o J.
 
 			while (true) {
 				linhas = br.readLine();
@@ -200,11 +95,12 @@ public class AlgoritmosPI {
 					break;
 				}
 
-				String[] vetorTemp = linhas.split(" "); // Separo os valores no meu vetor
+				String[] matrizTemp = linhas.split(" "); // Separo os valores no meu vetor
 
-				for (int j = 0; j < vetorTemp.length; j++) {
+				for (int j = 0; j < matrizTemp.length; j++) {
 
-					vetor[i][j] = Double.parseDouble((vetorTemp[i])); // enquanto percorre o j eu incremento os valores
+					matriz[i][j] = Double.parseDouble((matrizTemp[i])); // enquanto percorre o j eu incremento os
+																		// valores
 				}
 
 				i++; // Incremeto o I após percorrer todo o J.
@@ -215,7 +111,92 @@ public class AlgoritmosPI {
 			System.out.println("ERRO ----> " + e.getMessage()); // No Caso de alguma excessão eu printo na tela
 		}
 
-		return vetor;
+		return matriz;
 	}
 
-}
+	public static void armazenaSomaLinha(double matriz[][], double somaLinhas[]) {//armazena soma da Linha
+		double somaLinha = 0;
+		int verificaLinha = 0;
+		for (double[] matriz1 : matriz) {//Percorre a matriz em Linha
+			for (int j = 0; j < matriz[0].length; j++) {
+				somaLinha +=  matriz1[j];// armazena a soma da Linha percorrida 
+			}
+			somaLinhas[verificaLinha] = somaLinha;// armazena o resultado obtido no Vetor
+
+			somaLinha = 0;
+			verificaLinha++;
+		}
+
+	}
+
+	public static void armazenaSomaColuna(double matriz[][], double somaColunas[]) {//armazena soma da Coluna
+		double somaColuna = 0;
+		int verificaColuna = 0;
+		for (int i = 0; i < matriz[0].length; i++) {//Percorre a matriz em Colunas 
+			for (int j = 0; j < matriz.length; j++) {
+				somaColuna  += matriz[j][i]; // armazena a soma da coluna percorrida 
+			}
+			somaColunas[verificaColuna] = somaColuna;// armazena o resultado obtido no Vetor
+
+			somaColuna = 0;
+			verificaColuna++;
+		}
+
+	}
+
+	public static void armazenaResultadosSubtracao(double[] soma, double[] resultadoSubtracao) {
+		double abaixoSoma = 0;
+		double acimaSoma = 0;
+		for (int i = 0; i < soma.length; i++) {// Linha/Coluna verificada
+			for (int j = i + 1; j < soma.length; j++) {// soma das linhas/Colunas abaixo da linha/coluna verificada
+				abaixoSoma = abaixoSoma + soma[j];
+			}
+
+			for (int k = i - 1; k >= 0; k--) {// soma das linhas/Colunas acima da linha/Colunas verificada
+				acimaSoma = acimaSoma + soma[k];
+			}
+
+			if (abaixoSoma > acimaSoma) {// verifica qual valor é o maior para ser subtraido
+				resultadoSubtracao[i] = abaixoSoma - acimaSoma;// armazena o resultado subtraido de cada linha/Coluna
+																// Verificada
+
+			} else {
+				resultadoSubtracao[i] = acimaSoma - abaixoSoma;
+			}
+			acimaSoma = 0;// zera a soma superior para verificar a proxima linha/Coluna
+			abaixoSoma = 0;// zera a soma inferior para verificar a proxima linha/Coluna
+		}
+	}
+
+	public static String CentroDeGravidade(double [] resultadoSubtracaoLinhas,double [] resultadoSubtracaoColunas) {
+		double centroLinha = Integer.MAX_VALUE;
+		double centroColuna = Integer.MAX_VALUE;
+		int centroGravidadeLinha = 0;
+		int centroGravidadeColuna = 0;
+		
+		for (int i = 0; i < resultadoSubtracaoLinhas.length; i++) {// encontra a linha do centro de gravidade
+
+			if (resultadoSubtracaoLinhas[i] < centroLinha) {//percorre o vetor com resultados e pega o menor valor
+				centroLinha = resultadoSubtracaoLinhas[i];
+				centroGravidadeLinha = i + 1;
+
+			}
+
+		}
+		for (int i = 0; i < resultadoSubtracaoColunas.length; i++) {// encontra a Coluna do centro de gravidade
+
+			if (resultadoSubtracaoColunas[i] < centroColuna) {//percorre o vetor com resultados e pega o menor valor
+				centroColuna = resultadoSubtracaoColunas[i];
+				centroGravidadeColuna = i + 1;
+
+			}
+		}
+
+		
+				
+		return "O centro de gravidade da Matriz é {" + centroGravidadeLinha + " , " + centroGravidadeColuna + "}";
+	}
+		
+	}
+
+
