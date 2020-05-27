@@ -50,7 +50,8 @@ public class AlgoritmosPI {
 		armazenaResultadosSubtracao(somaColunas, resultadoSubtracaoColunas);//armazenando a subtração das somas acima e abaixo da coluna verificada 
 
 		String resposta = CentroDeGravidade(resultadoSubtracaoLinhas, resultadoSubtracaoColunas);
-		System.out.println(resposta);
+		
+		System.out.println("\n\n"+resposta);
 
 	}
 	// FUNÇÕES
@@ -95,11 +96,11 @@ public class AlgoritmosPI {
 					break;
 				}
 
-				String[] matrizTemp = linhas.split(" "); // Separo os valores no meu vetor
+				String[] vetorTemp = linhas.split(" "); // Separo os valores no meu vetor
 
-				for (int j = 0; j < matrizTemp.length; j++) {
+				for (int j = 0; j < vetorTemp.length; j++) {
 
-					matriz[i][j] = Double.parseDouble((matrizTemp[i])); // enquanto percorre o j eu incremento os
+					matriz[i][j] = Double.parseDouble((vetorTemp[j])); // enquanto percorre o j eu incremento os
 																		// valores
 				}
 
